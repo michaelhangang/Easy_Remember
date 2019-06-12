@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="books">Select Your Study Plan</string>
+    <string name="cet4">CET-4</string>
+    <string name="cet6">CET-6</string>
+    <string name="ielts">IELTS</string>
+    <string name="words">How many words per day:</string>
+    <string-array name="numWords">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+    </string-array>
+    <string name="start">Start Plan</string>
+
+</resources>
