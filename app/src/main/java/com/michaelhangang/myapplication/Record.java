@@ -1,8 +1,9 @@
 package com.michaelhangang.myapplication;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Record {
+public class Record implements Serializable {
        public Date data;
        public String  book;
        public int words;

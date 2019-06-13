@@ -1,5 +1,6 @@
 package com.michaelhangang.myapplication;
 
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         File file = getBaseContext().getFileStreamPath(getString(R.string.file));
         //check if file exist
          if( file.exists()){
-             Toast.makeText(this, "file exists", Toast.LENGTH_SHORT).show();
              String  temp = readFromFile();
              if(temp.isEmpty()) {
                  records = new ArrayList<Record>();
@@ -74,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        lastRecord.setText("");
+    }
 
     public void startPlan(View view) {
         //get date
@@ -98,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void onReport(View view) {
+        Intent intent = new Intent(this, Report.class);
+        intent.putExtra("records",records);
+        startActivity(intent);
+
+    }
     public void save() {
 
         String jsonString = gson.toJson(records);
@@ -113,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
             String dateOfRec = curFormater.format(lastRec.data);
             String bookOfRec = lastRec.book;
             String wordsOfRec = Integer.toString(lastRec.words);
-
-            lastRecord.setText(dateOfRec + " " + "" + bookOfRec + "  " + wordsOfRec);
+            lastRecord.setText("Date: "+dateOfRec + "\n\nBook: " + bookOfRec + "\n\nWords: " + wordsOfRec);
         }
     }
 
@@ -181,6 +191,9 @@ public class MainActivity extends AppCompatActivity {
         }
         save();
     }
+
+
+
 }// end Main
 
 

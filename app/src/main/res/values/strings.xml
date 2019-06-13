@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="books">Select Your Study Plan</string>
+    <string name="books">Study Plan:</string>
     <string name="cet4">CET-4</string>
     <string name="cet6">CET-6</string>
     <string name="ielts">IELTS</string>
-    <string name="words">How many words per day:</string>
+    <string name="words">Words a day:</string>
     <string-array name="numWords">
         <item>10</item>
         <item>20</item>
@@ -17,6 +17,8 @@
 
     <string name="clearall">Clear All</string>
     <string name="load">Load</string>
-    <string name="save">Save</string>
+    <string name="save">report</string>
     <string name="delete">Delete</string>
+    <string name="close">close</string>
+
 </resources>
