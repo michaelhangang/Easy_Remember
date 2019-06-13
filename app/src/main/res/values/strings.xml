@@ -13,5 +13,10 @@
         <item>50</item>
     </string-array>
     <string name="start">Start Plan</string>
+    <string name="file">test.txt</string>
 
+    <string name="clearall">Clear All</string>
+    <string name="load">Load</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
 </resources>
