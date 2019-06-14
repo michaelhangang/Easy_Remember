@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+ <string name="app_name">My Application</string>
     <string name="books">Study Plan:</string>
     <string name="cet4">CET-4</string>
     <string name="cet6">CET-6</string>
@@ -20,5 +20,29 @@
     <string name="save">report</string>
     <string name="delete">Delete</string>
     <string name="close">close</string>
+    <string name="date">Date: </string>
+    <string name="book">\n\nBook:  </string>
+    <string name="word">\n\nWords:   </string>
+    <string name="pattern">MMMM dd, yyyy HH:mm</string>
+    <string name="records">records</string>
+    <string name="seleted">You selected:\t</string>
+    <string name="learn">\nToday learn:\t </string>
+    <string name="numWord"> \twords</string>
+    <string name="header1"> Date</string>
+    <string name="header2"> Book</string>
+    <string name="header3"> Words</string>
+    <string name="name"> Gang Han</string>
+    <string name="direction">The App helps a user to record English words study.The User can select which book to study and how many words to learn. When the user presses the "Start Plan" button, the app can save the date, name of the book and the number of words. When the "Report" button is pressed, a table shows all records.
+        The user can scroll up to see all records.  </string>
+   <string name="setting">Setting</string>
+    <string name="setDate">set date</string>
+    <string name="setTIme">set time</string>
+    <string name="time">Time:</string>
+    <string name="confirm">comfirm</string>
+    <string name="result1">CET-4:\t</string>
+    <string name="result2">\nCET-6:\t</string>
+    <string name="result3">\nIELTS:\t</string>
+    <string name="total">\nTotal:</string>
+
 
 </resources>

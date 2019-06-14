@@ -13,27 +13,29 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class Report extends AppCompatActivity {
     ArrayList<Record> records;
     private TableLayout tableLayout;
     SimpleDateFormat curFormater;
-
+    private int cet4=0, cet6=0, ielts=0;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
-         records =(ArrayList<Record>)getIntent().getExtras().getSerializable("records");
-        curFormater = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss", Locale.getDefault());
-
+        records = (ArrayList<Record>) getIntent().getExtras().getSerializable(getString(R.string.records));
+        curFormater = new SimpleDateFormat(getString(R.string.pattern), Locale.getDefault());
+        textView = findViewById(R.id.textView);
         //table layout
         tableLayout = findViewById(R.id.table);
         addHeader();
 
         addRows();
+        onShowResult();
     }
-
 
     public void onClose(View view) {
         finish();
@@ -42,9 +44,9 @@ public class Report extends AppCompatActivity {
     public void addHeader(){
         TableRow tr =new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-        tr.addView(getTextView(0, "Date"));
-        tr.addView(getTextView(0, "Book"));
-        tr.addView(getTextView(0, "Words"));
+        tr.addView(getTextView(0, getString(R.string.header1),Color.BLACK, Typeface.BOLD, R.drawable.cell_shape));
+        tr.addView(getTextView(0, getString(R.string.header2),Color.BLACK, Typeface.BOLD, R.drawable.cell_shape));
+        tr.addView(getTextView(0, getString(R.string.header3),Color.BLACK, Typeface.BOLD, R.drawable.cell_shape));
 
         tableLayout.addView(tr, getTblLayoutParams());
 
@@ -64,14 +66,15 @@ public class Report extends AppCompatActivity {
                 TableRow.LayoutParams.WRAP_CONTENT);
     }
 
-    private TextView getTextView(int id, String title) {
+    private TextView getTextView(int id, String title,int color, int typeface,int bgColor) {
         TextView tv = new TextView(this);
         tv.setId(id);
-
+        tv.setTextColor(color);
+        tv.setTypeface(Typeface.DEFAULT, typeface);
+        tv.setBackgroundResource(bgColor);
         tv.setText(title);
         tv.setPadding(40, 40, 40, 40);
         tv.setLayoutParams(getLayoutParams());
-       // tv.setOnClickListener((View.OnClickListener) this);
         return tv;
     }
 
@@ -82,14 +85,29 @@ public class Report extends AppCompatActivity {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
 
-            tr.addView(getTextView(0, curFormater.format(record.data)));
-            tr.addView(getTextView(0, record.book));
-            tr.addView(getTextView(0, Integer.toString(record.words)));
+            tr.addView(getTextView(0, curFormater.format(record.data),Color.BLACK, Typeface.BOLD, R.drawable.cell_shape ));
+            tr.addView(getTextView(0, record.book,Color.BLACK, Typeface.BOLD, R.drawable.cell_shape));
+            tr.addView(getTextView(0, Integer.toString(record.words),Color.BLACK, Typeface.BOLD, R.drawable.cell_shape));
 
-
+            if(record.book.equals(getString(R.string.cet4))){
+                cet4 +=record.words;
+            }
+           else if(record.book.equals(getString(R.string.cet6))){
+                cet6 +=record.words;
+            }
+           else if(record.book.equals(getString(R.string.ielts))){
+                ielts +=record.words;
+            }
             tableLayout.addView(tr, getTblLayoutParams());
         }
 
 
+    }
+
+    public void onShowResult(){
+
+        String result =getString(R.string.result1)+cet4+getString(R.string.result2)+cet6+getString(R.string.result3)+ielts
+                +getString(R.string.total)+(cet4+cet6+ielts);
+        textView.setText(result);
     }
 }

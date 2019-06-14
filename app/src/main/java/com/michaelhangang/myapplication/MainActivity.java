@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         checkBox =findViewById(R.id.clearall);
         lastRecord =findViewById(R.id.lastRecord);
         //format data
-        curFormater = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss", Locale.getDefault());
+        curFormater = new SimpleDateFormat(getString(R.string.pattern), Locale.getDefault());
         //create gson object
         gson = new Gson();
         //create a file
@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        lastRecord.setText("");
+       // lastRecord.setText("");
+
     }
 
     public void startPlan(View view) {
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         records.add(record);
         save();
         Toast.makeText(this, today, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "You selected "+book+"\nToday learn "+num+" words", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.seleted)+book+getString(R.string.learn)+num+getString(R.string.numWord), Toast.LENGTH_SHORT).show();
 
 
     }
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onReport(View view) {
         Intent intent = new Intent(this, Report.class);
-        intent.putExtra("records",records);
+        intent.putExtra(getString(R.string.records),records);
         startActivity(intent);
 
     }
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             String dateOfRec = curFormater.format(lastRec.data);
             String bookOfRec = lastRec.book;
             String wordsOfRec = Integer.toString(lastRec.words);
-            lastRecord.setText("Date: "+dateOfRec + "\n\nBook: " + bookOfRec + "\n\nWords: " + wordsOfRec);
+            lastRecord.setText(getString(R.string.date)+dateOfRec +getString(R.string.book) + bookOfRec + getString(R.string.word) + wordsOfRec);
         }
     }
 
@@ -193,7 +194,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    public void onSetting(View view) {
+        Intent intent = new Intent(this,Setting.class);
+        startActivity(intent);
+    }
 }// end Main
 
 
